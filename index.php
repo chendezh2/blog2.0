@@ -16,4 +16,6 @@ $blogList = Blog::getBlogList($search_current_page, $search_categoryId, $search_
 
 $pageData = $pageClass->getPageArr();
 
+//显示 templete/index.php 模板
+$templete = 'index';
 include_once(ROOT_PATH.'templete/layout.php');
