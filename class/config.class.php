@@ -11,9 +11,9 @@ class Config
 	//全体页面背景色
 	const BG_COLOR = '#cce8cf';
 	//博客图片目录
-	const BLOG_IMG_PATH = '';
+	const BLOG_IMG_PATH = 'data/pic/';
 	//附件目录
-	const ATTACHMENT_PATH = '';
+	const ATTACHMENT_PATH = 'data/attachment/';
 
 	public static function getDbConfig()
 	{
