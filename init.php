@@ -55,7 +55,8 @@ $templete_var = array(
 	'title',//页面标题
 	'include_script',//头部载入的js文件
 	'include_css',//头部载入的css文件
-	'insert_script'//直接生成的js脚本
+	'insert_script',//直接生成的js脚本
+	'templete'//页面主体使用哪个模板
 );
 
 //上传文件错误代码转成文字

@@ -1,0 +1,37 @@
+.search
+{
+	margin-bottom: 10px;
+}
+.item
+{
+	border-bottom: 1px solid #063;
+}
+.item .title
+{
+	height: 16px;
+	padding: 5px 0px;
+}
+.item .title .attachment
+{
+	width: 15px;
+	text-align: right;
+}
+.item .abstract
+{
+	padding: 5px 0px;
+}
+a.one:link
+{
+	color: #000;
+	text-decoration: none;
+}
+a.one:visited
+{
+	color: #000;
+	text-decoration: none;
+}
+a.one:hover
+{
+	color: #000;
+	text-decoration: underline;
+}

@@ -15,5 +15,5 @@ $search_content = isset($_POST['content']) ? $_POST['content'] : '';
 $blogList = Blog::getBlogList($search_current_page, $search_categoryId, $search_title, $search_content, 0);
 
 $pageData = $pageClass->getPageArr();
-//使用模板类
-//include_once(ROOT_PATH.'templete/index.php');
+
+include_once(ROOT_PATH.'templete/layout.php');
