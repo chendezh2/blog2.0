@@ -24,9 +24,11 @@ include_once(ROOT_PATH.'class/page.class.php');
 $pageClass = new Page();
 //载入博客分类的相关类文件
 include_once(ROOT_PATH.'class/category.class.php');
+//载入博客类文件
+include_once(ROOT_PATH.'class/blog.class.php');
 
 //载入数据函数文件
-include_once(ROOT_PATH.'function/mysql.function.php');
+//include_once(ROOT_PATH.'function/mysql.function.php');
 //载入文件上传函数文件
 include_once(ROOT_PATH.'function/upload.function.php');
 
