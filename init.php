@@ -47,8 +47,6 @@ if (!get_magic_quotes_gpc())
     $_COOKIE   = String::addslashes_deep($_COOKIE);
     $_REQUEST  = String::addslashes_deep($_REQUEST);
 }
-//全体页面背景色
-define('BG_COLOR', Config::BG_COLOR);
 
 //模板必须要赋值的变量
 $templete_var = array(
