@@ -9,11 +9,11 @@
 				$_categoryList['id'] = intval($_categoryList['id']);
 				if($search_categoryId == $_categoryList['id'])
 				{
-					echo '<option value="'.$_categoryList['id'].'" selected>'.$_categoryList['name'].'</option>';
+					echo '<option value="'.$_categoryList['id'].'" selected>'.String::repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $_categoryList['level']-1).$_categoryList['name'].'</option>';
 				}
 				else
 				{
-					echo '<option value="'.$_categoryList['id'].'">'.$_categoryList['name'].'</option>';
+					echo '<option value="'.$_categoryList['id'].'">'.String::repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $_categoryList['level']-1).$_categoryList['name'].'</option>';
 				}
 			}
 			?>

@@ -10,8 +10,8 @@ foreach($templete_var as $_templete_var)
 	}
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
 	<title><?php echo $title; ?></title>
 	<link href="/css/common.css" rel="stylesheet" type="text/css" />
@@ -28,7 +28,7 @@ foreach($templete_var as $_templete_var)
 	}
 	?>
 	<style>
-	.main{background-color: <?php echo BG_COLOR; ?>;}
+	.main{background-color: <?php echo Config::BG_COLOR; ?>;}
 	</style>
 	<script src="/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="/js/common.js" type="text/javascript"></script>
@@ -46,7 +46,7 @@ foreach($templete_var as $_templete_var)
 	?>
 </head>
 
-<body style="background-color: <?php echo BG_COLOR; ?>;">
+<body style="background-color: <?php echo Config::BG_COLOR; ?>;">
 	<div class="main">
 		<div class="header">
 			<div class="fl"><a href="/index.php">首页</a></div>
