@@ -1,6 +1,7 @@
 <?php
 class Category
 {
+	//这个函数没用到
 	//获取指定分类下的子分类树，$category_id=0将获取全部分类树
 	public static function getChildrenTree($category_id = 0)
 	{

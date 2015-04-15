@@ -121,4 +121,58 @@ class Blog
 			return array(false, '分类id错误');
 		}
 	}
+
+	//更新一篇博客
+	public static function updateBlog($id)
+	{
+		$id = intval($id);
+		$_blog = self::getBlog($id);
+		if(empty($_blog))
+		{
+			return array(false, '博客id错误');
+		}
+		$categoryId = intval($GLOBALS['_POST']['category_id']);
+		$category = Category::getCategory(array('id' => $categoryId, 'is_deleted' => '0'));
+		if(!empty($category))
+		{
+			if(!empty($GLOBALS['_POST']['title']) && !empty($GLOBALS['_POST']['content']))
+			{
+				$upload = uploadAttachment();
+				if($upload[0])
+				{
+					$upload = $upload[1];
+					$sql = "update blog set category_id=".$categoryId.", title='".htmlspecialchars($GLOBALS['_POST']['title'])."', content='".$GLOBALS['_POST']['content']."', attachments=attachments+".count($upload).", modification_time=".time()." where id=".$id;
+					if($rs = $GLOBALS['db']->query($sql))
+					{
+						foreach($upload as $_name)
+						{
+							$GLOBALS['db']->query("insert into attachment(blog_id, path, origin_name, creation_time) values(".$id.", '".$_name['new_name']."', '".$_name['origin_name']."', ".time().")");
+						}
+						return array(true, '修改成功');
+					}
+					else
+					{
+						$upload_path = ROOT_PATH . Config::ATTACHMENT_PATH;
+						foreach($upload as $_name)
+						{
+							unlink($upload_path.$_name);
+						}
+						return array(false, '写入blog表出错');
+					}
+				}
+				else
+				{
+					return array(false, $upload[1]);
+				}
+			}
+			else
+			{
+				return array(false, '标题和内容都不能为空');
+			}
+		}
+		else
+		{
+			return array(false, '分类id错误');
+		}
+	}
 }
