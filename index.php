@@ -7,7 +7,7 @@ $insert_script = '';
 //显示 templete/index.php 模板
 $templete = 'index';
 
-//获取全部分类树
+//获取全部分类一维数组
 $categoryList = Category::getChildrenLine();
 
 $search_current_page = isset($_POST['page']) ? intval($_POST['page']) : (isset($_GET['page']) ? intval($_GET['page']) : 1);
