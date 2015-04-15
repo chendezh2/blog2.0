@@ -15,7 +15,8 @@ class Blog
 			$blog = array();
 		}
 		//如果存在附件
-		if($blog && $blog['attachments']>0)
+		//if($blog && $blog['attachments']>0)
+		if($blog)//不存在附件也要查找，可能是被删除的附件，在编辑博客时要用到
 		{
 			$blog['attachmentList'] = $db->getAll("select * from attachment where blog_id=".$id);
 		}
@@ -173,6 +174,39 @@ class Blog
 		else
 		{
 			return array(false, '分类id错误');
+		}
+	}
+
+	//删除或恢复附件
+	public static function delAttachment($id)
+	{
+		$id = intval($id);
+		$attachment = $GLOBALS['db']->getRow("select blog_id,is_deleted from attachment where id=".$id);
+		if($attachment)
+		{
+			$is_deleted = $attachment['is_deleted'] ? 0 : 1;
+			$sql = "update attachment set is_deleted=".$is_deleted.",modification_time=".time()." where id=".$id;
+			$rs = $GLOBALS['db']->query($sql);
+			if($rs)
+			{
+				if($is_deleted)
+				{
+					$GLOBALS['db']->query("update blog set attachments = attachments - 1 where id=".$attachment['blog_id']);
+				}
+				else
+				{
+					$GLOBALS['db']->query("update blog set attachments = attachments + 1 where id=".$attachment['blog_id']);
+				}
+				return array(true);
+			}
+			else
+			{
+				return array(false, $id.' 修改失败');
+			}
+		}
+		else
+		{
+			return array(false, 'id参数错误');
 		}
 	}
 }
