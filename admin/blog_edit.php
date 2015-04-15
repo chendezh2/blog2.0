@@ -14,7 +14,7 @@ if($id > 0)
 	if(!empty($_POST))
 	{
 		$include_script[] = '/admin/js/msg.js';
-		$rs = updateBlog($id);
+		$rs = Blog::updateBlog($id);
 		$insert_script .= '$(function(){showMsg("'.$rs[1].'");});';
 	}
 	$blog = Blog::getBlog($id);
