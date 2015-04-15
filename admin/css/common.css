@@ -1,0 +1,118 @@
+*
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	font-family: "Microsoft Yahei", Arial;
+}
+.main
+{
+	width: 100%;
+}
+.header
+{
+	padding: 10px;
+}
+.content
+{
+	padding: 0px 10px;
+}
+.footer
+{
+	padding: 10px;
+}
+.clearfix
+{
+	width: 100%;
+	height: 1px;
+	clear: both;
+}
+.main_table
+{
+	width: 100%;
+}
+/*********************************常用类*********************************/
+a:link
+{
+	color: #36c;
+	text-decoration: none;
+}
+a:visited
+{
+	color: #36c;
+	text-decoration: none;
+}
+a:hover
+{
+	color: #36c;
+	text-decoration: underline;
+}
+.pointer
+{
+	cursor: pointer;
+}
+.fl
+{
+	float: left;
+}
+.fr
+{
+	float: right;
+}
+.p_t_10
+{
+	padding-top: 10px;
+}
+.p_b_10
+{
+	padding-bottom: 10px;
+}
+.p_l_10
+{
+	padding-left: 10px;
+}
+.p_r_10
+{
+	padding-right: 10px;
+}
+.m_t_10
+{
+	margin-top: 10px;
+}
+.m_b_10
+{
+	margin-bottom: 10px;
+}
+.m_l_10
+{
+	margin-left: 10px;
+}
+.m_r_10
+{
+	margin-right: 10px;
+}
+.page
+{
+	height: 30px;
+	margin-top: 10px;
+}
+.page ul
+{
+	list-style: none;
+	float: right;
+	height: 30px;
+}
+.page ul li
+{
+	float: left;
+	height: 26px;
+	margin-right: 5px;
+	padding: 0px 8px;
+	border:1px solid #000;
+	line-height: 26px;
+	text-align: center;
+}
+.page ul li.y
+{
+	cursor: pointer;
+}
