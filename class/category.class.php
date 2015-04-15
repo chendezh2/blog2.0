@@ -61,4 +61,21 @@ class Category
 
 		return $children;
 	}
+
+	//获取指定的分类
+	public static function getCategory($filter = array())
+	{
+		$sql = "select * from category";
+		if($filter)
+		{
+			$where = array();
+			foreach($filter as $k => $v)
+			{
+				$where[] = $k."='".$v."'";
+			}
+			$where = implode(' and ', $where);
+			$sql = $sql.' where '.$where;
+		}
+		return $GLOBALS['db']->getAll($sql);
+	}
 }

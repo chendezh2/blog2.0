@@ -71,4 +71,54 @@ class Blog
 		$sql = "select b.*,c.name from blog as b inner join category as c on b.category_id=c.id and c.is_deleted=0".$where.' order by b.creation_time desc limit '.$limit[1].','.$limit[0];
 		return $db->getAll($sql);
 	}
+
+	//添加一篇博客
+	public static function insertBlog()
+	{
+		$categoryId = intval($GLOBALS['_POST']['category_id']);
+		$category = Category::getCategory(array('id' => $categoryId, 'is_deleted' => '0'));
+		if(!empty($category))
+		{
+			if(!empty($GLOBALS['_POST']['title']) && !empty($GLOBALS['_POST']['content']))
+			{
+				$upload = uploadAttachment();
+				if($upload[0])
+				{
+					$upload = $upload[1];
+					$sql = "insert into blog(category_id, title, content, attachments, creation_time) values(".$categoryId.",'".htmlspecialchars($GLOBALS['_POST']['title'])."','".$GLOBALS['_POST']['content']."',".count($upload).",".time().")";
+					if($rs = $GLOBALS['db']->query($sql))
+					{
+						$blogId = $GLOBALS['db']->insert_id();
+						foreach($upload as $_name)
+						{
+							$GLOBALS['db']->query("insert into attachment(blog_id, path, origin_name, creation_time) values(".$blogId.", '".$_name['new_name']."', '".$_name['origin_name']."', ".time().")");
+						}
+						$GLOBALS['db']->query("update category set blogs = blogs + 1 where id=".$categoryId);
+						return array(true, '添加成功');
+					}
+					else
+					{
+						$upload_path = ROOT_PATH . Config::ATTACHMENT_PATH;
+						foreach($upload as $_name)
+						{
+							unlink($upload_path.$_name);
+						}
+						return array(false, '写入blog表出错');
+					}
+				}
+				else
+				{
+					return array(false, $upload[1]);
+				}
+			}
+			else
+			{
+				return array(false, '标题和内容都不能为空');
+			}
+		}
+		else
+		{
+			return array(false, '分类id错误');
+		}
+	}
 }
