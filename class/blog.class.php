@@ -4,7 +4,22 @@ class Blog
 	//获取单篇博客
 	public static function getBlog($id)
 	{
-		//
+		//获取数据库对象
+		global $db;
+
+		$id = intval($id);
+		$blog = $db->getRow("select * from blog where id=".$id." and is_deleted=0");
+		//如果找到了博客但分类已被删除
+		if($blog && !$db->getOne("select id from category where is_deleted=0 and id=".$blog['category_id']))
+		{
+			$blog = array();
+		}
+		//如果存在附件
+		if($blog && $blog['attachments']>0)
+		{
+			$blog['attachmentList'] = $db->getAll("select * from attachment where blog_id=".$id);
+		}
+		return $blog;
 	}
 
 	/* 
