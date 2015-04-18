@@ -17,6 +17,10 @@
 {
 	padding: 0px 10px;
 }
+.content p
+{
+	margin-bottom:12px;
+}
 .footer
 {
 	padding: 10px;
