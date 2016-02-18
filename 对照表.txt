@@ -25,3 +25,4 @@ multi前缀     多个的
 multibyte     多字节
 scalar        标量
 scalar value  标量值,如a=3,相对应的是分级的值，比如数组
+classic       典型的,经典的,传统的
