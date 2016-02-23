@@ -30,3 +30,4 @@ scalar value    标量值,如a=3,相对应的是分级的值，比如数组
 classic         典型的,经典的,传统的
 criteria        标准
 standard        标准
+ultra前缀       极端的
