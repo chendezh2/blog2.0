@@ -34,3 +34,6 @@ ultra前缀       极端的
 closure         关闭,闭包
 concrete        具体的
 provider        提供者
+facade          门面
+chunk           大块，数据块,语块
+eloquent        意味深长的,有说服力的
