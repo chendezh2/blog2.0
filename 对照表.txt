@@ -33,3 +33,4 @@ standard        标准
 ultra前缀       极端的
 closure         关闭,闭包
 concrete        具体的
+provider        提供者
