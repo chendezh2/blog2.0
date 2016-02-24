@@ -43,3 +43,9 @@ identifier      身份标识
 illuminate      照明
 foundation      基础
 scope           作用域
+grammar         语法
+increment       增量
+clause          子句
+where clause    where子句
+processor       处理器
+various         各种各样的
