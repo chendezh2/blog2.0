@@ -39,4 +39,6 @@ chunk           大块，数据块,语块
 eloquent        意味深长的,有说服力的
 ident           识别,鉴别
 identify        识别
-Identifier      身份标识
+identifier      身份标识
+illuminate      照明
+foundation      基础
