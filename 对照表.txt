@@ -42,3 +42,4 @@ identify        识别
 identifier      身份标识
 illuminate      照明
 foundation      基础
+scope           作用域
