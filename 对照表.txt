@@ -50,3 +50,4 @@ where clause    where子句
 processor       处理器
 process         处理,进行,队列前进
 various         各种各样的
+sensitive       敏感
