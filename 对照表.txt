@@ -52,3 +52,5 @@ process         处理,进行,队列前进
 various         各种各样的
 sensitive       敏感
 case-sensitive  大小写敏感
+reflection      反射
+invoke
