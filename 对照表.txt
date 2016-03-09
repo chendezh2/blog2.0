@@ -56,4 +56,4 @@ reflection      反射
 prior           在前,先前(相当于old) 保存现场时记录以前的变量用
 internal        内部的
 expect          预计
-invoke
+invoke          调用
