@@ -48,4 +48,5 @@ increment       增量
 clause          子句
 where clause    where子句
 processor       处理器
+process         处理,进行,队列前进
 various         各种各样的
