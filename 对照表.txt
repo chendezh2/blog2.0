@@ -61,3 +61,4 @@ protocol        协议
 board           板
 blackboard      黑板
 dashboard       仪表板
+certificate     证书
