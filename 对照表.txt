@@ -58,3 +58,6 @@ internal        内部的
 expect          预计
 invoke          调用
 protocol        协议
+board           板
+blackboard      黑板
+dashboard       仪表板
