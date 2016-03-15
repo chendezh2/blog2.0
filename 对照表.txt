@@ -62,3 +62,4 @@ board           板
 blackboard      黑板
 dashboard       仪表板
 certificate     证书
+actual          实际的
