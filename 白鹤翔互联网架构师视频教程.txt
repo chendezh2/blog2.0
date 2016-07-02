@@ -1,0 +1,5 @@
+0.互联网架构师课程简介.mp4
+11:08  基于TCP的RPC远程方法调用
+11:36  dba方向大名鼎鼎的GoldenGate  GoldenGate啥玩意
+13:05  离线数据分析hadoop  在线数据分析Storm和Spark
+13:55  应用架构师做什么的
