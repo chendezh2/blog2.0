@@ -69,3 +69,8 @@
 6:00   接口中定义成员变量时，可以不写public static final，写和不写效果是一样的
 6:26   一个接口中的方法只能是抽象方法，abstract写不写都是抽象方法，而且方法只能是public的
 
+第四章
+03_异常的分类.avi
+4:16   Throwable类已知的直接子类Error和Exception，其中Error类是系统内部错误，管不了
+6:29   任何继承RuntimeException的异常可以不用捕获，其余的异常必须要捕获
+
