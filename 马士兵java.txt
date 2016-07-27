@@ -97,6 +97,7 @@
 07_StringBuffer.avi
 1:00   什么叫可变字符串和不可变字符串
 10_Math_and_File.avi
+8:20   java.io包中的File类的静态属性separator是路径中分隔文件夹的分隔符(pathSeparator是多个路径之间的分隔符)
 17:20  当类在包中时，在类中获取到的当前路径是包这个文件夹所在的目录
 
 第七章
@@ -110,3 +111,9 @@
 05_Iterator.avi
 23:32  Java的各种衍生技术(容器、框架、类库等)，看看哪些想学的、需要学的
 25:00  Iterator对象的remove方法是在迭代过程中删除元素的唯一的安全方法
+
+第八章
+01_IO初步.avi
+8:51   JDK提供的4种抽象IO类(InputStream、OutputStream、Reader、Writer)
+03_FileReader_FileWriter.avi
+1:16   输出Unicode字符表到文本文件
