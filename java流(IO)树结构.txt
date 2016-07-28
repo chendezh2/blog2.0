@@ -1,0 +1,42 @@
+java.io.InputStream
+	java.io.ByteArrayInputStream
+	java.io.FileInputStream
+	java.io.ObjectInputStream
+	java.io.PipedInputStream
+	java.io.SequenceInputStream
+	java.io.StringBufferInputStream
+	java.io.FilterInputStream
+		java.io.BufferedInputStream
+		java.io.DataInputStream
+		java.io.LineNumberInputStream
+		java.io.PushbackInputStream
+
+java.io.OutputStream
+	java.io.ByteArrayOutputStream
+	java.io.FileOutputStream
+	java.io.ObjectOutputStream
+	java.io.PipedOutputStream
+	java.io.FilterOutputStream
+		java.io.BufferedOutputStream
+		java.io.DataOutputStream
+		java.io.PrintStream
+
+java.io.Reader
+	java.io.BufferedReader
+	java.io.CharArrayReader
+	java.io.PipedReader
+	java.io.StringReader
+	java.io.InputStreamReader
+		java.io.FileReader
+	java.io.FilterReader
+		java.io.PushbackReader
+
+java.io.Writer
+	java.io.BufferedWriter
+	java.io.CharArrayWriter
+	java.io.PipedWriter
+	java.io.StringWriter
+	java.io.OutputStreamWriter
+		java.io.FileWriter
+	java.io.FilterWriter
+	java.io.PrintWriter
