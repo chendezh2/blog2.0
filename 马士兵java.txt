@@ -117,3 +117,19 @@
 8:51   JDK提供的4种抽象IO类(InputStream、OutputStream、Reader、Writer)
 03_FileReader_FileWriter.avi
 1:16   输出Unicode字符表到文本文件
+09_ObjectIO.avi
+11:34  transient关键字解释
+10_总结.avi
+0:21   externalizable接口解释，自己控制自己的序列化过程
+
+第九章
+01_线程的基本概念.avi
+11:11  Java中怎样起一个新线程(方法一：实现Runnable接口。方法二：继承自Thread类并重写其run方法)
+02_Sleep方法.avi
+1:33   要新起线程，能实现Runnable接口的尽量不要继承Thread类，因为不能再继承其他类了
+15:05  一个线程控制另一个线程的方法
+06_线程同步_2.avi
+3:07   synchronized关键字
+07_线程同步_3.avi
+0:23   死锁的原理
+7:22   解决死锁问题的一个解决办法：把锁的粒度加粗(锁大对象，不锁小对象，尽量只锁定一个对象)
