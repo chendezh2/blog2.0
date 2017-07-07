@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+html,body{background-color: #cce8cf;}
+.err{color: #f00;}
+a:link{color: #00a3d9;}
+a:hover{color: #00a3d9;}
+a:visited{color: #00a3d9;}
+</style>
+</head>
+<body>
+<p><b>创建\yii\web\Application实例的过程</b></p>
+<p>1)  Yii::$app = \yii\web\Application实例</p>
+<p>2)  Yii::$app->loadedModules['\yii\web\Application'] = \yii\web\Application实例</p>
+<p>3)  \yii\web\Application实例->state = STATE_BEGIN  0:应用程序开始启动</p>
+<p>4)  检查几个特定的配置项并设置到应用程序(id basePath vendorPath runtimePath timeZone container)</p>
+<p>5)  核心组件的配置补充到配置数组</p>
+<p>6)  设置错误处理函数</p>
+<p>7)  将经过以上处理还没被删除的配置数组设置到\yii\web\Application的属性中</p>
+<p>8)  \yii\web\Application实例->state = STATE_INIT  1:应用程序开始初始化</p>
+<p>9)  设置 @webroot 和 @web 别名</p>
+<p>10) 设置\yii\web\Application->extensions属性</p>
+<p>11) 循环每个扩展，设置扩展中指定的别名</p>
+<p>12) 循环每个扩展，扩展中bootstrap指定的组件如果是BootstrapInterface的子类，执行它的bootstrap(\yii\web\Application实例)方法</p>
+<p>13) 循环\yii\web\Application->bootstrap属性指定的组件或模块，进行实例化。如果还是BootstrapInterface的子类，执行它的bootstrap(\yii\web\Application实例)方法</p>
+
+<br />
+
+<p><b>\yii\web\Application->run()的过程</b></p>
+<p>1)  \yii\web\Application实例->state = STATE_BEFORE_REQUEST  2:应用程序处理请求之前</p>
+<p>2)  触发应用程序处理请求之前事件</p>
+<p>3)  \yii\web\Application实例->state = STATE_HANDLING_REQUEST  3:应用程序处理请求</p>
+<p><a href="#application.handleRequest">4)  \yii\web\Application->handleRequest(\yii\web\Request组件)</a></p>
+<p>5)  \yii\web\Application实例->state = STATE_AFTER_REQUEST  4:应用程序处理请求之后</p>
+<p>6)  触发应用程序处理请求之后事件</p>
+<p>7)  \yii\web\Application实例->state = STATE_SENDING_RESPONSE  5:应用程序发送响应</p>
+<p><a href="#response.send">8)  \yii\web\Response->send()发送响应</a></p>
+<p>9)  \yii\web\Application实例->state = STATE_END  6:应用程序结束</p>
+<p>10) 返回\yii\web\Response->exitStatus</p>
+
+<br />
+
+<p id="application.handleRequest"><b>\yii\web\Application->handleRequest()处理请求的过程</b></p>
+<p>1) 根据\yii\web\Application->catchAll判断是否捕捉所有请求(如果捕捉所有请求，catchAll[0]为路由，其余所有元素为参数)</p>
+<p><a href="#request.resolve">2) \yii\web\Request->resolve()方法解析出路由</a></p>
+<p>3) \yii\web\Application->requestedRoute = 解析出来的路由</p>
+<p><a href="#application.runAction">4) $result = \yii\web\Application->runAction(路由, 参数)</a></p>
+<p>5) 如果$result是\yii\web\Reaponse的实例，直接return $result</p>
+<p>6) 如果$result不是\yii\web\Reaponse的实例，获取response组件并将$result赋值给response组件的data属性，返回response组件</p>
+
+<br />
+
+<p id="request.resolve"><b>\yii\web\Request->resolve()解析路由的过程</b></p>
+<p><a href="#urlManager.parseRequest">1) $result = \yii\web\UrlManager->parseRequest(\yii\web\Request对象)解析路由</a></p>
+<p>2) list($route, $params) = $result; $result应该包含路由和参数二部分</p>
+<p>3) $params  \yii\web\request->_queryParams  $_GET 根据这三者处理请求参数，处理结果写进$_GET或\yii\web\request->_queryParams  \yii\web\request->_queryParams可以存放一些默认的GET参数</p>
+<p>4) 返回数组[路由, 请求参数]</p>
+
+<br />
+
+<p id="urlManager.parseRequest"><b>\yii\web\UrlManager->parseRequest(\yii\web\Request对象)解析路由的过程</b></p>
+<p>1) 如果不启用URL美化，使用\yii\web\request->get(路由参数名)获取路由参数</p>
+<p>2) 返回数组[路由, []] 也就是如果不启用URL美化，该方法返回的请求参数永远是空数组</p>
+<p class="err">启用URL美化的部分还没仔细看过源码</p>
+
+<br />
+
+<p id="application.runAction"><b>\yii\web\Application->runAction($route, $params=[])的过程(方法继承的\yii\base\Module的runAction()方法)</b></p>
+<p><a href="#application.createController">1) 使用\yii\web\Application->createController($route)方法创建控制器，返回控制器对象和要执行的方法ID</a></p>
+<p>2) \yii\web\Application->controller = 控制器对象</p>
+<p><a href="#controller.runAction">3) $result 刚创建的控制器对象->runAction($actionID, $params)</a></p>
+<p>4) 返回$result</p>
+
+<br />
+
+<p id="application.createController"><b>\yii\web\Application->createController()创建控制器的过程</b></p>
+
+
+
+
+<br />
+
+<p id="controller.runAction"><b>\yii\web\Application->createController()创建控制器的过程</b></p>
+
+
+
+<br />
+
+<p id="response.send"><b>\yii\web\Response->send()发送响应的过程</b></p>
+
+
+</body>
+</html>
