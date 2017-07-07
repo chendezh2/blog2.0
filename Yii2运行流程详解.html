@@ -77,11 +77,34 @@ a:visited{color: #00a3d9;}
 <br />
 
 <p id="application.createController"><b>\yii\web\Application->createController()创建控制器的过程</b></p>
+<p>1) 如果传入的路由为空，取\yii\web\Application->defaultRoute的值作为路由</p>
+<p>2) 根据指定的路由确定2个变量的值
+<p>$id：控制器名 $route：要执行的方法名 或</p>
+<p>$id：模块名   $route：包含控制器的路由</p>
+<p>3) 优先从\yii\web\Application->controllerMap中获取控制器配置，并实例化返回</p>
+<p>4) 根据$module = $this->getModule($id)判断$id是模块名还是控制器名</p>
+<p><a href="#module.createController">5) 如果$id是模块名，使用\yii\base\Module->createController($route)创建控制器并返回</a></p>
+<p>6) 如果$id是控制器名，$route的第一个/前的字符也是控制器名的一部分</p>
+<p><a href="#application.createControllerByID">7) 使用\yii\web\Application->createControllerByID($id)创建控制器</a></p>
+<p>8) 如果上一步没创建成功，把$route部分全加入控制器名，再创建。这是，认为指定的路由全是控制器名，要执行的方法为默认方法</p>
+
+<br />
+
+
+<p id="module.createController"><b>\yii\base\Module->createController($route)创建控制器的过程</b></p>
+
+
+
+<br />
+
+
+<p id="application.createControllerByID"><b>\yii\web\Application->createControllerByID($id)创建控制器的过程</b></p>
 
 
 
 
 <br />
+
 
 <p id="controller.runAction"><b>\yii\web\Application->createController()创建控制器的过程</b></p>
 
