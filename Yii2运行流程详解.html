@@ -6,13 +6,14 @@
 <style>
 html,body{background-color: #cce8cf;}
 .err{color: #f00;}
+.tip{color: #4d4dff;}
 a:link{color: #00a3d9;}
 a:hover{color: #00a3d9;}
 a:visited{color: #00a3d9;}
 </style>
 </head>
 <body>
-<p><b>创建\yii\web\Application实例的过程</b></p>
+<p><b>创建\yii\web\Application实例的过程<span class="tip">(继承的yii\base\Application的构造函数)</span></b></p>
 <p>1)  Yii::$app = \yii\web\Application实例</p>
 <p>2)  Yii::$app->loadedModules['\yii\web\Application'] = \yii\web\Application实例</p>
 <p>3)  \yii\web\Application实例->state = STATE_BEGIN  0:应用程序开始启动</p>
@@ -22,7 +23,7 @@ a:visited{color: #00a3d9;}
 <p>7)  将经过以上处理还没被删除的配置数组设置到\yii\web\Application的属性中</p>
 <p>8)  \yii\web\Application实例->state = STATE_INIT  1:应用程序开始初始化</p>
 <p>9)  设置 @webroot 和 @web 别名</p>
-<p>10) 设置\yii\web\Application->extensions属性</p>
+<p>10) 设置\yii\web\Application->extensions属性　<span class="tip">属性在yii\base\Application中</span></p>
 <p>11) 循环每个扩展，设置扩展中指定的别名</p>
 <p>12) 循环每个扩展，扩展中bootstrap指定的组件如果是BootstrapInterface的子类，执行它的bootstrap(\yii\web\Application实例)方法</p>
 <p>13) 循环\yii\web\Application->bootstrap属性指定的组件或模块，进行实例化。如果还是BootstrapInterface的子类，执行它的bootstrap(\yii\web\Application实例)方法</p>
@@ -46,8 +47,8 @@ a:visited{color: #00a3d9;}
 <p id="application.handleRequest"><b>\yii\web\Application->handleRequest()处理请求的过程</b></p>
 <p>1) 根据\yii\web\Application->catchAll判断是否捕捉所有请求(如果捕捉所有请求，catchAll[0]为路由，其余所有元素为参数)</p>
 <p><a href="#request.resolve">2) \yii\web\Request->resolve()方法解析出路由</a></p>
-<p>3) \yii\web\Application->requestedRoute = 解析出来的路由</p>
-<p><a href="#application.runAction">4) $result = \yii\web\Application->runAction(路由, 参数)</a></p>
+<p>3) \yii\web\Application->requestedRoute = 解析出来的路由　<span class="tip">属性在yii\base\Application中</span></p>
+<p><a href="#application.runAction">4) $result = \yii\web\Application->runAction(路由, 参数)</a>　<span class="tip">方法在yii\base\Module中</span></p>
 <p>5) 如果$result是\yii\web\Reaponse的实例，直接return $result</p>
 <p>6) 如果$result不是\yii\web\Reaponse的实例，获取response组件并将$result赋值给response组件的data属性，返回response组件</p>
 
@@ -68,52 +69,100 @@ a:visited{color: #00a3d9;}
 
 <br />
 
-<p id="application.runAction"><b>\yii\web\Application->runAction($route, $params=[])的过程(方法继承的\yii\base\Module的runAction()方法)</b></p>
-<p><a href="#application.createController">1) 使用\yii\web\Application->createController($route)方法创建控制器，返回控制器对象和要执行的方法ID</a></p>
+<p id="application.runAction"><b>\yii\web\Application->runAction($route, $params=[])运行方法的过程<span class="tip">(方法继承的\yii\base\Module的runAction()方法)</span></b></p>
+<p><a href="#application.createController">1) 使用\yii\web\Application->createController($route)方法创建控制器，返回控制器对象和要执行的方法ID</a>　<span class="tip">方法在yii\base\Module中</span></p>
 <p>2) \yii\web\Application->controller = 控制器对象</p>
-<p><a href="#controller.runAction">3) $result 刚创建的控制器对象->runAction($actionID, $params)</a></p>
+<p><a href="#controller.runAction">3) $result = 刚创建的控制器对象->runAction($actionID, $params)</a>　<span class="tip">方法在yii\base\Controller中</span></p>
 <p>4) 返回$result</p>
 
 <br />
 
-<p id="application.createController"><b>\yii\web\Application->createController()创建控制器的过程</b></p>
+<p id="application.createController"><b>\yii\web\Application->createController()创建控制器的过程<span class="tip">(方法继承的\yii\base\Module的createController()方法)</span></b></p>
 <p>1) 如果传入的路由为空，取\yii\web\Application->defaultRoute的值作为路由</p>
 <p>2) 根据指定的路由确定2个变量的值
 <p>$id：控制器名 $route：要执行的方法名 或</p>
 <p>$id：模块名   $route：包含控制器的路由</p>
 <p>3) 优先从\yii\web\Application->controllerMap中获取控制器配置，并实例化返回</p>
-<p>4) 根据$module = $this->getModule($id)判断$id是模块名还是控制器名</p>
+<p><a href="#application.getModule">4) 根据$module = $this->getModule($id)判断$id是模块名还是控制器名</a>　<span class="tip">方法在yii\base\Module中</span></p>
 <p><a href="#module.createController">5) 如果$id是模块名，使用\yii\base\Module->createController($route)创建控制器并返回</a></p>
 <p>6) 如果$id是控制器名，$route的第一个/前的字符也是控制器名的一部分</p>
-<p><a href="#application.createControllerByID">7) 使用\yii\web\Application->createControllerByID($id)创建控制器</a></p>
-<p>8) 如果上一步没创建成功，把$route部分全加入控制器名，再创建。这是，认为指定的路由全是控制器名，要执行的方法为默认方法</p>
+<p><a href="#application.createControllerByID">7) 使用\yii\web\Application->createControllerByID($id)创建控制器</a>　<span class="tip">方法在yii\base\Module中</span></p>
+<p>8) 如果上一步没创建成功，把$route部分全加入控制器名，再创建。这时，认为指定的路由全是控制器名，要执行的方法为默认方法</p>
 
 <br />
 
+<p id="application.getModule"><b>\yii\web\Module->getModule($id, $load=true)获取模块的过程<span class="tip">(方法继承的\yii\base\Module的getModule()方法)</span></b></p>
+<p>1) 先判断模块是顶级模块还是子模块(模块id包含/)，是子模块的话，先获取顶级模块，再一级一级往下获取到指定的模块</p>
+<p>2) 从\yii\web\Application->_modules[$id]中获取指定的模块　<span class="tip">属性在yii\base\Module中</span></p>
+<p>3) 如果\yii\web\Application->_modules[$id]是已经实例的模块对象，直接返回</p>
+<p>4) 如果\yii\web\Application->_modules[$id]存在但不是实例化好的模块对象，根据传入参数$load判断是否要实例化，不需要的话返回null，需要的话实例化后返回</p>
+<p>5) 如果\yii\web\Application->_modules[$id]不存在，直接返回null</p>
+
+<br />
 
 <p id="module.createController"><b>\yii\base\Module->createController($route)创建控制器的过程</b></p>
-
-
-
-<br />
-
-
-<p id="application.createControllerByID"><b>\yii\web\Application->createControllerByID($id)创建控制器的过程</b></p>
-
-
-
+<p class="err">目前看的是\yii\web\Application的运行过程，不会进入这部分，看gii或debug的时候再看这的源码</p>
 
 <br />
 
+<p id="application.createControllerByID"><b>\yii\web\Application->createControllerByID($id)创建控制器的过程<span class="tip">(方法继承的\yii\base\Module的createControllerByID()方法)</span></b></p>
+<p>1) 根据控制器id是否是分级控制器确定2个变量的值</p>
+<p>$prefix：前缀</p>
+<p>$className：去掉前缀的控制器id</p>
+<p>2) 正则验证控制器id和前缀必须满足命名规范(字母开头，不能包含特殊字符等等)，不符合规范的直接返回null</p>
+<p>3) 控制器id转成不包含命名空间的类名</p>
+<p>4) 根据$this->controllerNamespace属性给控制器类名添加上命名空间　<span class="tip">属性在\yii\base\Application中</span></p>
+<p>5) 如果类不存在 或 不是\yii\base\Controller的子类，返回null</p>
+<p>6) 使用Yii::createObject(控制器类名, [控制器id, \yii\web\Application实例])创建控制器并返回(把\yii\web\Application实例作为控制器的模块)</p>
 
-<p id="controller.runAction"><b>\yii\web\Application->createController()创建控制器的过程</b></p>
+<br />
 
+<p id="controller.runAction"><b>\yii\web\Controller->runAction($id, $params=[])运行方法的过程<span class="tip">(方法继承的\yii\base\Controller的runAction()方法)</span></b></p>
+<p><a href="#controller.createAction">1) $action = \yii\web\Controller->createAction($id)创建方法</a>　<span class="tip">方法在\yii\base\Controller中</span></p>
+<p>2) Yii::$app->requestedAction = 刚创建的方法对象　<span class="tip">属性在\yii\base\Application中</span></p>
+<p>3) \yii\web\Controller->action = 刚创建的方法对象　<span class="tip">属性在\yii\base\Controller中</span></p>
+<p>4) 递归该控制器的所有祖先模块，依次调用beforeAction()方法，只要有一次返回false，则不会执行方法</p>
+<p>5) 调用控制器自身的beforeAction()方法，判断是否允许执行方法</p>
+<p><a href="#action.runWithParams">6) 方法对象->runWithParams($params)执行方法</a></p>
+<p>7) 调用控制器的afterAction()方法</p>
+<p>8)依次调用所有祖先模块的afterAction()方法</p>
 
+<br />
+
+<p id="controller.createAction"><b>\yii\web\Controller->createAction($id)创建方法的过程<span class="tip">(方法继承的\yii\base\createAction的createAction()方法)</span></b></p>
+<p>1) 如果传入的方法id为空，取\yii\web\Controller->defaultAction属性作为默认方法id　<span class="tip">属性在yii\base\Controller中</span></p>
+<p>2) 把每个控制器自定义的actions()方法的返回数组，作为方法地图</p>
+<p>3) 如果方法id在方法地图中有定义，根据方法地图创建方法类并返回</p>
+<p>4) 把方法id转成方法名</p>
+<p>5) 创建方法对象new \yii\base\InlineAction()，并返回</p>
+
+<br />
+
+<p id="action.runWithParams"><b>\yii\base\InlineAction->runWithParams($params)执行方法的过程</b></p>
+<p><a href="#controller.bindActionParams">1) $args = \yii\web\Controller->bindActionParams(\yii\base\InlineAction对象, $params)获取要传递给执行方法的参数</a></p>
+<p>2) \yii\web\Application->requestedParams = $args;　<span class="tip">属性在yii\base\Application中</span></p>
+<p>3) 使用获取到的参数调用控制器的方法</p>
+
+<br />
+
+<p id="controller.bindActionParams"><b>\yii\web\Application->bindActionParams($action, $params)绑定方法参数的过程</b></p>
+<p>1) 创建方法的反射类实例，$method = new \ReflectionMethod()</p>
+<p>如果$action是InlineAction的实例，创建的是控制器中指定方法的反射类实例</p>
+<p>如果$action不是InlineAction的实例，创建的是方法类中的run方法的反射类实例</p>
+<p>2) 通过反射机制确定要传递给执行方法的参数，并把参数记录在\yii\web\controller->actionParams属性中</p>
+<p>3) 返回要传递给执行方法的参数</p>
 
 <br />
 
 <p id="response.send"><b>\yii\web\Response->send()发送响应的过程</b></p>
 
 
+
+
+
+
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </body>
 </html>
