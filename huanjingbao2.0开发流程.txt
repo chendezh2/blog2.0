@@ -1,0 +1,45 @@
+安装YII框架
+安装yii2-datepicker扩展
+安装Yii2 Font Awesome扩展
+完善fontawesome扩展的Icon小部件，添加可设置title和onclick属性
+安装yii2-phpexcel扩展
+
+添加一个扩展的RBAC管理器
+添加一个表单模型基类，可从数据库模型类或数组中迁移错误信息至表单模型中
+自定义SESSION的存储方式
+添加一个验证手机号的自定义验证器
+添加一个带分组的gridview，用于后台权限设置
+
+yii\base\Model添加getMessage()和setMessage()方法和message属性，用于存放出错信息
+
+添加百度Echarts支持  折线图、地图等等
+
+添加一个新的模块customer
+添加一个新的模块api
+添加一个新的模块appapi
+添加一个新的模块extapi
+所有应用都使用自定义的SESSION存储方式
+
+common应用中的main-local的配置写入main，以适合服务器的配置，再将main-local添加到忽略列表
+
+打开RBAC管理，使用自定义扩展的RBAC管理器进行后台权限管理
+修改系统的语言环境和时区
+
+
+每个应用添加几个必要的文件夹 如backend\models\form
+
+添加每个应用对应的UrlManager组件
+
+
+backend、frontend、appapi、api通用父控制器
+
+通过gii生成的CRUD文件，控制器中如果找不到模型会抛异常 NotFountHttpException  不知道这个异常response怎么处理的 如果显示异常页面改成别的方式，不抛异常，指向一个自定义的错误页面
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+后台错误日志
+安装组件自动调用api ?
+前台地图展示页面
+删除场景时，如果有设备注册在该场景下，能不能删?  前后台使用pjax进行删除等操作
+
+现在的折线图如果出现2条相同场景的线，颜色不一样
+前后台页脚加固定定位?删掉页脚?
+1024分辨率下依然看不到导航条
+1024分辨率下无竖直滚动条
+
+
+
+
+
+
+
+
+问：gii生成的crud文件中，index页面如何做到通过get的参数设置当前分页页数
+答：分页类如果没设置当前页，读取$_GET中指定键的值作为当前分页
+
+问：ActiveQuery的查询条件相关方法的使用  where  andFilterWhere等等
+答：
+
+查看yii模型中的一些方法：
+1)hasOne()/hasMany()方法第二次调用时，是否是从缓存中读取的，读到的不是最新的关联数据
+答：第一次读取时会把结果写进私有属性，以后从属性中读取
+2)通过getter/setter方法读取关联数据时，hasOne()/hasMany()方法返回的是个ActiveQuery对象，为什么可以foreach循环对应的具体对象？
+  而直接调用getXXX()循环的是ActiveQuery对象，而不是具体的对象
+答：因为调用的不是yii\base\object的__get()方法
+
+问：behavior的使用方法
+答：behaviors()方法中指定的行为在执行\yii\base\Component::trigger()方法时(是$this->ensureBehaviors();这一句)被添加到行为指定的事件，运行流程执行到相关事件时会被触发执行
+
+问:\yii\base\Application->loadedModules属性和\yii\base\Module->_modules属性有什么区别
+答：\yii\base\Application->loadedModules包含所有已经被载入的模块(包括应用程序自身)
+    \yii\base\Module->_modules包含应用程序配置文件中设置的模块
+    当使用Yii::$app->getModule(模块id)获取模块时，如果该模块还没被实例化过，会实例化并出现在\yii\base\Application->loadedModules属性中，因为getModule()方法会调用模块的setInstance静态方法
+
+
+问：yii内置的图片验证码怎么用
+答：
+
+问：通过ACF登录权限管理，设置一个页面只能在未登录状态下访问，如果是已登录状态，则会返回无权限访问的页面。怎么设置才能返回您已经登录的提示，而不是无权限的页面
+答：
+
+
+
+
+
+59  增加一个放前台模型搜索类的文件夹
+124 main-local的配置写入main，以适合服务器的配置  还要删除svn上的main-local
+161 api模块通用父控制器
+180 添加百度Echarts支持：
+    添加普通图表的支持类Echarts，地图图表待添加
+    具体图表只添加了一个折线图Line，其余普通图表待添加
+181 默认数据点显示在X轴的刻度上
+186 添加一个后台无权限时的显示视图
+197 删除场景使用session的flash消息，提示删除成功或失败
+224 添加一个新的模块appapi
+257 add extapi外部公共API
+    包含sms接口和pm2.5接口
+
+
+
+41  后台SESSION使用自定义的存储方式  对应的前台和appapi应用都应该使用自定义存储方式
+135 配置文件添加各个应用的urlManager组件
+252 添加appapi应用的urlManager组件
+273 添加extapi应用的urlManager
+
+
