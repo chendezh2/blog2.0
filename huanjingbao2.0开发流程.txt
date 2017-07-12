@@ -4,6 +4,7 @@
 完善fontawesome扩展的Icon小部件，添加可设置title和onclick属性
 安装yii2-phpexcel扩展
 
+在Yii框架内，添加一个控制台控制器。用于添加新的APP
 添加一个扩展的RBAC管理器
 添加一个表单模型基类，可从数据库模型类或数组中迁移错误信息至表单模型中
 自定义SESSION的存储方式

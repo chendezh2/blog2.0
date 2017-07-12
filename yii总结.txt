@@ -41,7 +41,11 @@
 答：
 
 问：通过ACF登录权限管理，设置一个页面只能在未登录状态下访问，如果是已登录状态，则会返回无权限访问的页面。怎么设置才能返回您已经登录的提示，而不是无权限的页面
-答：
+答：通过设置denyCallback属性，设置成一个自定义函数可以自定义拒绝的行为。示例如下：
+'denyCallback' => function ($rule, $action) {
+	$response = $action->controller->fail('需要登录');
+	$response->send();
+}
 
 
 
