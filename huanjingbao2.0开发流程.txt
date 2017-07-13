@@ -1,4 +1,4 @@
-安装YII框架  删掉所有.getignore .getkeeper文件  删掉console应用下runtime目录下的2个文件夹
+安装YII框架  删掉所有.gitignore .gitkeep文件  删掉console应用下runtime目录下的2个文件夹  删除vendor/bin下的4个文件
 安装yii2-datepicker扩展
 安装Yii2 Font Awesome扩展
 完善fontawesome扩展的Icon小部件，添加可设置title和onclick属性
@@ -21,7 +21,7 @@ yii\base\Model添加getMessage()和setMessage()方法和message属性，用于�
 添加一个新的应用extapi
 所有应用都使用自定义的SESSION存储方式
 
-common应用中的main-local的配置写入main，以适合服务器的配置，再将main-local添加到忽略列表
+common应用中的main-local的配置写入main，以适合服务器的配置，再将main-local添加到忽略列表   此时数据库名要改成huanjingbao1.0
 
 打开RBAC管理，使用自定义扩展的RBAC管理器进行后台权限管理
 修改系统的语言环境和时区
