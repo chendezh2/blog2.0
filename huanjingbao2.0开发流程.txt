@@ -23,7 +23,7 @@ yii\base\Model添加getMessage()和setMessage()方法和message属性，用于�
 
 common应用中的main-local的配置写入main，以适合服务器的配置，再将main-local添加到忽略列表   此时数据库名要改成huanjingbao1.0
 
-打开RBAC管理，使用自定义扩展的RBAC管理器进行后台权限管理
+打开RBAC管理，使用自定义扩展的RBAC管理器进行权限管理
 修改系统的语言环境和时区
 
 
