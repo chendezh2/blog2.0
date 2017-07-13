@@ -14,6 +14,7 @@
 yii\base\Model添加getMessage()和setMessage()方法和message属性，用于存放出错信息
 
 添加百度Echarts支持  折线图、地图等等
+     添加一个记录应用程序启用时间的常量YII_BEGIN_TIME_INT，只包含秒数，不包含微秒
 
 添加一个新的应用customer
 添加一个新的应用api
