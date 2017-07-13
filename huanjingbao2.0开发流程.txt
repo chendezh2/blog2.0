@@ -15,10 +15,10 @@ yii\base\Model添加getMessage()和setMessage()方法和message属性，用于�
 
 添加百度Echarts支持  折线图、地图等等
 
-添加一个新的模块customer
-添加一个新的模块api
-添加一个新的模块appapi
-添加一个新的模块extapi
+添加一个新的应用customer
+添加一个新的应用api
+添加一个新的应用appapi
+添加一个新的应用extapi
 所有应用都使用自定义的SESSION存储方式
 
 common应用中的main-local的配置写入main，以适合服务器的配置，再将main-local添加到忽略列表
