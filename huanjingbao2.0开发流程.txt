@@ -39,7 +39,7 @@ backend、frontend、appapi、api通用父控制器
 
 
 
-
+扩展DetailView，使html格式的值能显示target属性
 
 
 
