@@ -27,7 +27,7 @@ common应用中的main-local的配置写入main，以适合服务器的配置，
 打开RBAC管理，使用自定义扩展的RBAC管理器进行权限管理
 修改系统的语言环境和时区
 
-扩展DetailView，使html格式的值在使用HtmlPurifier净化时能进行自定义，比如显示target属性
+扩展DetailView，使html格式的值在使用HtmlPurifier净化时能进行自定义，比如显示target属性 (这个Yii框架本身就支持，可以使用传递匿名函数的方式自定义配置)
 
 每个应用添加几个必要的文件夹 如backend\models\form
 
