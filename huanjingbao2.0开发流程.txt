@@ -29,10 +29,14 @@ common应用中的main-local的配置写入main，以适合服务器的配置，
 
 扩展DetailView，使html格式的值在使用HtmlPurifier净化时能进行自定义，比如显示target属性 (这个Yii框架本身就支持，可以使用传递匿名函数的方式自定义配置)
 
-每个应用添加几个必要的文件夹 如backend\models\form
+每个应用添加几个必要的文件夹
+appapi\models\form
+backend\models\form
+backend\models\search
+frontend\models\form
+frontend\models\search
 
 添加每个应用对应的UrlManager组件
-
 
 backend、frontend、appapi、api通用父控制器
 
