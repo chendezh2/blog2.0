@@ -37,8 +37,10 @@ frontend\models\form
 frontend\models\search
 
 添加每个应用对应的UrlManager组件
+将每个应用的错误处理视图(site/error对应的视图)，视图文件中的英文改中文
+添加backend、frontend、appapi、api通用父控制器
+backend添加必要的视图文件(views/forbidden.php)
 
-backend、frontend、appapi、api通用父控制器
 
 添加使用gii生成每个应用的各类文件时，使用每个应用自定义的文件模板，不使用Yii默认的模板
 
@@ -47,8 +49,20 @@ backend、frontend、appapi、api通用父控制器
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 添加支持输入页数直接跳转的分页组件GoPager
 
 
+在通用控制器中设置，如果查找某条记录不存在，跳转到指定的错误处理方法(如：notFound())，同时记录进错误日志
 
 
