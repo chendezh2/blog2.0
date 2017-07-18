@@ -60,6 +60,22 @@
 
 
 
+
+
+
+
+问：有这样一个需求：\appapi\models\Device获取所属用户，使用父类方法\common\models\Device->getMember()获取到的是\common\models\Member对象，现在想获取到\appapi\models\Member对象，方法怎么写
+    1)不使用\appapi\models\Device继承\common\models\Device，所有方法都写在\common\models\Device里
+    2)在\appapi\models\Device中重写getMember()方法，直接调用父类方法 或 拷贝父类的代码
+    选择哪种方法，还是使用其他办法
+答：
+
+
+
+
+
+
+
 59  增加一个放前台模型搜索类的文件夹
 124 main-local的配置写入main，以适合服务器的配置  还要删除svn上的main-local
 161 api模块通用父控制器
