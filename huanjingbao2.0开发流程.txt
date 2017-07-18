@@ -42,10 +42,8 @@ frontend\models\search
 backend添加必要的视图文件(views/forbidden.php)
 
 
-添加使用gii生成每个应用的各类文件时，使用每个应用自定义的文件模板，不使用Yii默认的模板
+添加使用gii生成backend、frontend、appapi、api应用的crud文件时，使用每个应用自定义的文件模板，不使用Yii默认的模板
 
-研究下 为什么现在的hjb后台，在输入id不存在的时候报错，而不显示404页面
-通过gii生成的CRUD文件，控制器中如果找不到模型会抛异常 NotFountHttpException  不知道这个异常response怎么处理的 如果显示异常页面改成别的方式，不抛异常，指向一个自定义的错误页面
 
 
 
