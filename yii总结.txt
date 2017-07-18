@@ -67,8 +67,10 @@
 问：有这样一个需求：\appapi\models\Device获取所属用户，使用父类方法\common\models\Device->getMember()获取到的是\common\models\Member对象，现在想获取到\appapi\models\Member对象，方法怎么写
     1)不使用\appapi\models\Device继承\common\models\Device，所有方法都写在\common\models\Device里
     2)在\appapi\models\Device中重写getMember()方法，直接调用父类方法 或 拷贝父类的代码
-    选择哪种方法，还是使用其他办法
-答：
+    选择哪种方案，还是使用其他办法
+答：第二种方案直接调用父类方法不行，得到的还是\common\models\Member
+    拷贝父类的代码虽然结果是对的，但产生代码重复
+    目前没想出更好的办法，暂且使用第一种方案
 
 
 
