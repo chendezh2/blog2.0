@@ -16,9 +16,13 @@ INSERT INTO `appapi` (`id`, `name`, `secret`, `create_time`) VALUES (1, 'hjb9472
 #member表添加一个字段，用于自动登录时的认证
 ALTER TABLE `member` ADD COLUMN `auth_key` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '自动登录的认证key' AFTER `password`;
 
-
-
-
+#错误日志表添加一些字段，记录详细信息
+ALTER TABLE `error_log`
+	ADD COLUMN `app` VARCHAR(50) NOT NULL COMMENT '请求的app' AFTER `content`,
+	ADD COLUMN `url` VARCHAR(500) NOT NULL COMMENT '请求地址' AFTER `app`,
+	ADD COLUMN `get` TEXT NOT NULL COMMENT 'get参数' AFTER `url`,
+	ADD COLUMN `post` LONGTEXT NOT NULL COMMENT 'post参数' AFTER `get`,
+	ADD COLUMN `cookie` TEXT NOT NULL COMMENT 'cookie参数' AFTER `post`;
 
 
 
