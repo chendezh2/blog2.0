@@ -44,6 +44,24 @@ COMMENT='已删除的用户表'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
 
+#该功能暂时不做，表先大概设计一下
+#后台管理员操作日志表
+CREATE TABLE `admin_log` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`admin_id` INT(11) NOT NULL COMMENT '管理员ID',
+	`category` INT(3) NOT NULL COMMENT '操作种类(操作的表名对应的数字标记)',
+	`type` INT(3) NOT NULL COMMENT '操作类型(create、delete、login等等对应的数字标记)',
+	`record_id` INT(11) NOT NULL COMMENT '操作的记录对应的ID',
+	`record_name` VARCHAR(500) NOT NULL COMMENT '操作的记录对应的名称类型的字段',
+	`content` TEXT NOT NULL COMMENT '操作内容',
+	`create_time` INT(11) NOT NULL COMMENT '操作时间',
+	PRIMARY KEY (`id`),
+	INDEX `idx_admin_id` (`admin_id`),
+	INDEX `idx_category_record_id` (`category`, `record_id`)
+)
+COMMENT='管理员操作日志表'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
 
 
 
